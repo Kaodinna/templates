@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background-color: #F7F5F0;
+  color: #2D3748;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling for the table */
+.table-scroll::-webkit-scrollbar { height: 6px; }
+.table-scroll::-webkit-scrollbar-track { background: #F0EDE6; }
+.table-scroll::-webkit-scrollbar-thumb { background: #C4985A44; border-radius: 3px; }
+.table-scroll::-webkit-scrollbar-thumb:hover { background: #C4985A88; }
+
+/* Input focus ring */
+.tracker-input:focus {
+  outline: none;
+  border-color: #2A6A8F;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(27,77,107,0.08);
+}
+.tracker-input:hover { background: #F7F5F0; }
+.tracker-input {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: #2D3748;
+  transition: all 0.15s;
+}
+
+/* Sticky header */
+thead th { position: sticky; top: 0; z-index: 2; }
