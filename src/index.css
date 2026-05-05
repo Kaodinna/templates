@@ -10,20 +10,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Scrollbar styling for the table */
-.table-scroll::-webkit-scrollbar { height: 6px; }
-.table-scroll::-webkit-scrollbar-track { background: #F0EDE6; }
-.table-scroll::-webkit-scrollbar-thumb { background: #C4985A44; border-radius: 3px; }
-.table-scroll::-webkit-scrollbar-thumb:hover { background: #C4985A88; }
-
-/* Input focus ring */
-.tracker-input:focus {
-  outline: none;
-  border-color: #2A6A8F;
-  background: white;
-  box-shadow: 0 0 0 2px rgba(27,77,107,0.08);
+/* ── Table scrolling ──────────────────────────── */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
-.tracker-input:hover { background: #F7F5F0; }
+.table-scroll::-webkit-scrollbar { height: 5px; }
+.table-scroll::-webkit-scrollbar-track { background: #F0EDE6; }
+.table-scroll::-webkit-scrollbar-thumb { background: #C4985A55; border-radius: 3px; }
+.table-scroll::-webkit-scrollbar-thumb:hover { background: #C4985A99; }
+
+/* ── Tracker table inputs ─────────────────────── */
 .tracker-input {
   width: 100%;
   border: 1px solid transparent;
@@ -35,6 +32,54 @@ body {
   color: #2D3748;
   transition: all 0.15s;
 }
+.tracker-input:hover { background: #F7F5F0; }
+.tracker-input:focus {
+  outline: none;
+  border-color: #2A6A8F;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(27,77,107,0.08);
+}
 
-/* Sticky header */
+/* ── Sticky table header ──────────────────────── */
 thead th { position: sticky; top: 0; z-index: 2; }
+
+/* ── Mobile action bar ────────────────────────── */
+@media (max-width: 639px) {
+  .action-bar-mobile {
+    flex-wrap: wrap;
+    gap: 10px !important;
+  }
+  .action-bar-mobile .action-btn-group {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .action-bar-mobile .meta-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
+
+/* ── Safe area for iOS bottom bar ─────────────── */
+.pb-safe { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+
+/* ── Form grids: force full width on mobile ───── */
+@media (max-width: 639px) {
+  .grid-cols-12 > *,
+  .sm\:grid-cols-12 > * {
+    grid-column: span 12 !important;
+  }
+  /* Emergency contact / Parent auth field rows */
+  .grid-cols-1.sm\:grid-cols-12 > * {
+    grid-column: span 1 !important;
+  }
+}
+
+/* ── Credential tracker table: min cell widths ─ */
+@media (max-width: 639px) {
+  .tracker-input { font-size: 12px; padding: 5px 6px; }
+}

@@ -72,7 +72,7 @@ function FieldSection({ section, state, onChange }) {
         <span className="font-serif text-[13px] text-gold bg-gold-soft px-2.5 py-1 rounded-md">{section.num}</span>
         <h2 className="font-serif text-[20px] text-navy">{section.title}</h2>
       </div>
-      <div className="grid grid-cols-12 gap-x-4 gap-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-12 gap-x-4 gap-y-3 sm:gap-y-4">
         {section.fields.map(f => (
           <div key={f.id} className="min-w-0" style={{gridColumn:`span ${f.col}`}}>
             {f.label && (
@@ -293,27 +293,27 @@ export default function ParentAuth() {
 
       <main className="flex-1 flex flex-col min-w-0 bg-cream-warm">
         {/* Topbar */}
-        <header className="bg-white border-b border-gray-200 px-6 lg:px-10 h-[68px] flex items-center gap-4 flex-shrink-0">
-          <button onClick={() => setSidebar(true)} className="lg:hidden p-2 rounded-lg text-gray-400 hover:bg-gray-100">
+        <header className="bg-white border-b border-gray-200 px-6 lg:px-10 h-[56px] sm:h-[68px] flex items-center gap-3 flex-shrink-0">
+          <button onClick={() => setSidebar(true)} className="lg:hidden p-2 -ml-1 rounded-lg flex-shrink-0 text-gray-400 hover:bg-gray-100">
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
           </button>
           <a href="/" className="hidden sm:inline-flex items-center gap-1.5 text-gray-400 text-[13px] font-medium px-2.5 py-1.5 -ml-2.5 rounded-lg hover:text-navy hover:bg-cream-warm transition-all">
             <BackIcon /> Back
           </a>
-          <nav className="flex items-center gap-2 text-[13px] text-gray-400">
+          <nav className="flex items-center gap-1.5 sm:gap-2 text-[12px] sm:text-[13px] text-gray-400 min-w-0">
             <span>Templates</span><span className="text-gray-300">/</span>
             <span className="text-navy font-semibold">Parent Authorization Form</span>
           </nav>
         </header>
 
         {/* Action bar */}
-        <div className="bg-white border-b border-gray-200 px-6 lg:px-10 py-3.5 flex items-center gap-4 flex-wrap sticky top-0 z-10 shadow-sm">
+        <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-10 py-3 flex items-center gap-2 sm:gap-3 flex-wrap sticky top-0 z-10 shadow-sm">
           <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-[12.5px] font-semibold border transition-all
             ${saving ? 'bg-amber-50 border-amber-200/60 text-amber-700' : 'bg-green-50 border-green-200/60 text-green-700'}`}>
             {saving
               ? <svg className="w-3 h-3 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
               : <CheckIcon />}
-            <span>{saving ? 'Saving…' : 'All changes saved'}</span>
+            <span>{saving ? 'Saving…' : 'Saved'}</span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -333,20 +333,20 @@ export default function ParentAuth() {
           </button>
           <button onClick={handlePDF} disabled={pdfLoading}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-semibold bg-gold text-white hover:bg-[#B88A4E] disabled:opacity-60 transition-all">
-            <PdfIcon /><span>{pdfLoading ? 'Generating…' : 'Download PDF'}</span>
+            <PdfIcon /><span className="hidden sm:inline">{pdfLoading ? 'Generating…' : 'Download PDF'}</span><span className="sm:hidden">{pdfLoading ? '…' : 'PDF'}</span>
           </button>
         </div>
 
         {/* Content */}
-        <div className="px-6 lg:px-10 py-9 max-w-[900px] w-full mx-auto pb-20">
+        <div className="px-4 sm:px-6 lg:px-10 py-6 sm:py-9 max-w-[900px] w-full mx-auto pb-safe">
           <div className="mb-8 pb-7 border-b border-gray-100">
             <span className="inline-block text-[11px] font-bold tracking-[2px] uppercase text-gold mb-3.5">Family & Enrollment Template</span>
-            <h1 className="font-serif text-[34px] text-navy leading-tight mb-3">Parent Authorization Form</h1>
-            <p className="text-[15px] text-gray-400 leading-relaxed max-w-2xl">
+            <h1 className="font-serif text-[26px] sm:text-[34px] text-navy leading-tight mb-3">Parent Authorization Form</h1>
+            <p className="text-[13.5px] sm:text-[15px] text-gray-400 leading-relaxed">
               Complete one form per enrolled child per program year. For each authorization, select Yes or No.
               All authorizations are voluntary — declining any item will not affect your child's enrollment.
             </p>
-            <div className="inline-flex items-center gap-2 mt-5 px-3.5 py-2 bg-cream-deep rounded-lg text-[12.5px] text-gray-500 font-medium">
+            <div className="inline-flex items-center gap-2 mt-5 px-3.5 py-2 bg-cream-deep rounded-lg text-[11.5px] sm:text-[12.5px] text-gray-500 font-medium">
               <LockIcon />
               <span><strong className="text-navy font-semibold">Your work stays on this device.</strong> Compleros never sees or stores what you type here.</span>
             </div>
@@ -358,9 +358,9 @@ export default function ParentAuth() {
               : <FieldSection  key={section.id} section={section} state={state} onChange={handleChange} />
           ))}
 
-          <div className="bg-gradient-to-r from-cream to-cream-warm border border-gold/30 border-l-4 border-l-gold rounded-xl p-6 mt-4">
+          <div className="bg-gradient-to-r from-cream to-cream-warm border border-gold/30 border-l-4 border-l-gold rounded-xl p-4 sm:p-6 mt-4">
             <div className="text-[11px] font-bold tracking-[2px] uppercase text-gold mb-2">Track this in Compleros</div>
-            <p className="text-[14.5px] text-navy-deep leading-relaxed">
+            <p className="text-[13.5px] sm:text-[14.5px] text-navy-deep leading-relaxed">
               Track whether each child's authorization form is on file and current. Compleros tracks status, never records.
             </p>
           </div>
